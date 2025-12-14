@@ -283,11 +283,11 @@ function RiesgoForm() {
                 className="form-select"
                 required
               >
-                <option value={1}>1 - Muy Baja (Raro)</option>
-                <option value={2}>2 - Baja (Improbable)</option>
-                <option value={3}>3 - Media (Posible)</option>
-                <option value={4}>4 - Alta (Probable)</option>
-                <option value={5}>5 - Muy Alta (Casi seguro)</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
               </select>
             </div>
 
@@ -303,11 +303,11 @@ function RiesgoForm() {
                 className="form-select"
                 required
               >
-                <option value={1}>1 - Insignificante</option>
-                <option value={2}>2 - Menor</option>
-                <option value={3}>3 - Moderado</option>
-                <option value={4}>4 - Mayor</option>
-                <option value={5}>5 - Catastrófico</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
               </select>
             </div>
 
