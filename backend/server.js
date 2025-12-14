@@ -19,6 +19,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "http://localhost:3000",
+  "https://reporte-vulnerabilidades.vercel.app",
   process.env.CORS_ORIGIN,
 ].filter(Boolean);
 
@@ -27,6 +28,11 @@ app.use(
     origin: function (origin, callback) {
       // Permitir requests sin origin (como Postman o curl)
       if (!origin) return callback(null, true);
+
+      // Permitir cualquier subdominio de vercel.app en producción
+      if (origin && origin.includes(".vercel.app")) {
+        return callback(null, true);
+      }
 
       if (allowedOrigins.includes(origin)) {
         callback(null, true);
