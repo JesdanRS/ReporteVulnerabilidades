@@ -14,33 +14,29 @@ connectDB();
 // Middleware de seguridad
 app.use(helmet());
 
-// Configurar CORS
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5174",
-  "http://localhost:3000",
-  "https://reporte-vulnerabilidades.vercel.app",
-  process.env.CORS_ORIGIN,
-].filter(Boolean);
-
+// Configurar CORS - Permitir Vercel y localhost
 app.use(
   cors({
     origin: function (origin, callback) {
-      // Permitir requests sin origin (como Postman o curl)
+      // Permitir requests sin origin (Postman, curl, etc)
       if (!origin) return callback(null, true);
 
-      // Permitir cualquier subdominio de vercel.app en producción
-      if (origin && origin.includes(".vercel.app")) {
+      // Permitir localhost en cualquier puerto
+      if (origin.startsWith("http://localhost")) {
         return callback(null, true);
       }
 
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
+      // Permitir cualquier URL de Vercel
+      if (origin.endsWith(".vercel.app")) {
+        return callback(null, true);
       }
+
+      // Si nada coincide, rechazar
+      callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
